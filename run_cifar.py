@@ -528,3 +528,8 @@ for epoch in range(args.epochs):
         f.write(str(max(example_stats['train'][1])))
         f.write(' ')
         f.write(str(max(example_stats['test'][1])))
+
+print('train test \n')
+print(str(max(example_stats['train'][1])))
+print(' ')
+print(str(max(example_stats['test'][1])))
