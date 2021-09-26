@@ -301,8 +301,8 @@ parser.add_argument(
 # Enter all arguments that you want to be in the filename of the saved output
 ordered_args = [
     'dataset', 'data_augmentation', 'cutout', 'seed', 'sorting_file',
-    'remove_n', 'keep_lowest_n', 'remove_subsample', 'noise_percent_labels',
-    'noise_percent_pixels', 'noise_std_pixels'
+    'remove_n', 'keep_lowest_n', 'remove_subsample', # 'noise_percent_labels',
+    # 'noise_percent_pixels', 'noise_std_pixels'
 ]
 
 # Parse arguments and setup name of output file with forgetting stats
