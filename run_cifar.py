@@ -158,6 +158,8 @@ def test(epoch, model, device, example_stats):
     total = 0.
     test_batch_size = 32
 
+    preds = []
+    
     model.eval()
 
     for batch_idx, batch_start_ind in enumerate(
@@ -188,6 +190,7 @@ def test(epoch, model, device, example_stats):
         _, predicted = torch.max(outputs.data, 1)
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
+        preds += list(predicted.cpu().numpy())
 
     # Add test accuracy to dict
     acc = 100. * correct.item() / total
@@ -203,12 +206,12 @@ def test(epoch, model, device, example_stats):
         state = {
             'acc': acc,
             'epoch': epoch,
+            'test_preds': preds,
         }
         save_point = os.path.join(args.output_dir, 'checkpoint', args.dataset)
         os.makedirs(save_point, exist_ok=True)
         torch.save(state, os.path.join(save_point, save_fname + '.t7'))
         best_acc = acc
-
 
 model_options = ['resnet18', 'wideresnet']
 dataset_options = ['cifar10', 'cifar100']
